@@ -7,6 +7,7 @@ import { toggleTodo } from "../app/api/server"
 // This type is used to define the shape of our data.
 // You can use a Zod schema     here if you want.
 export type Todos = {
+  id: string
   title: string
   complete: boolean
 }
@@ -23,7 +24,7 @@ export const columns: ColumnDef<Todos>[] = [
     ),
     enableSorting: false,
     enableHiding: false,
-  },    
+  },  
   {
     accessorKey: "title",
     header: "Todo Item",
