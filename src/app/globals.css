@@ -78,8 +78,20 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
 
-  .task--completed {
-    @apply bg-destructive;
+.data-table {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+    .data-table::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(90deg, transparent 90%, white);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
   }
 }
