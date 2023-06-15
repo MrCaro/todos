@@ -30,37 +30,43 @@ export default async function Home() {
     <>
       <Header />
       <main className='container mx-auto p-4 mt-8'>
-        <p className="text-xs text-muted-foreground text-right">{Math.floor(completedTodos.length * 100 / todos.length)}% completed</p>
+        <div className="flex flex-wrap mb-12 justify-between">
+          <div>
+            <h1 className="text-primary text-3xl lg:text-5xl font-bold">Todos</h1>
+            <p>
+              A list of all my current and past todo items including their title and status.
+            </p>
+          </div>  
+          <Dialog>
+            <div className="text-right mt-4 w-full md:w-auto">
+              <DialogTrigger asChild>
+                <Button className="w-full md:w-auto">Add todo</Button>
+              </DialogTrigger>
+            </div>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle className="text-xl">Add item to your list</DialogTitle>
+                <DialogDescription>
+                </DialogDescription>
+              </DialogHeader>
+              <form className="flex flex-col gap-4 py-4" action={createTodo}>
+                <Label htmlFor="title" className="text-left">
+                  Todo Item
+                </Label>
+                <Input id="title" name="title" type="text" placeholder="i.e Do my laundry" />
+                <div className="flex">
+                  <Button className="w-full" type="submit">Save item</Button>
+                </div>
+              </form>
+              <DialogFooter className="text-sm">
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+        <p className="text-xs text-muted-foreground text-right">{Math.floor(completedTodos.length * 100 / todos.length)}%</p>
+        <p className="text-xs text-muted-foreground text-right">{completedTodos.length} out of {todos.length} completed</p>
         <Progress value={completedTodos.length * 100 / todos.length} className="h-1 translate-y-2/4 rounded-bl-none rounded-br-none" />
         <DataTable columns={columns} data={todos} />
-        <Dialog>
-          <div className="text-right mt-4">
-            <DialogTrigger asChild>
-              <Button variant="outline">Add todo</Button>
-            </DialogTrigger>
-          </div>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Add item to your todo list</DialogTitle>
-              <DialogDescription>
-                Once you type your task click &apos;save item&apos; to add it to your list.
-              </DialogDescription>
-            </DialogHeader>
-            <form className="grid gap-4 py-4" action={createTodo}>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="title" className="text-left">
-                  Todo
-                </Label>
-                <Input id="title" name="title" type="text" placeholder="i.e Do my laundry" className="col-span-3" />
-              </div>
-              <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-                <Button type="submit">Save item</Button>
-              </div>
-            </form>
-            <DialogFooter>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
       </main>
       <Footer />
     </>

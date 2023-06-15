@@ -1,10 +1,10 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Roboto_Flex } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto_Flex({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Noname Apps',
+  title: 'Todo App',
   description: 'App built with Next JS',
 }
 
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>{children}</body>
+      <body className={`${roboto.className}`}>{children}</body>
     </html>
   )
 }
