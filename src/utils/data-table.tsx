@@ -38,6 +38,7 @@ export default function DataTable<TData, TValue>({
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [showPagination, setShowPagination] = useState(true)
 
   const table = useReactTable({
     data,
@@ -62,8 +63,10 @@ export default function DataTable<TData, TValue>({
         <Input
           placeholder="Search Todo(s)..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+          onChange={(event) => {
+              table.getColumn("title")?.setFilterValue(event.target.value);
+              setShowPagination(event.target.value ? false : true)
+            }
           }
           className="max-w-sm"
         />
@@ -104,7 +107,7 @@ export default function DataTable<TData, TValue>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
                   No results.
                 </TableCell>
               </TableRow>
@@ -112,11 +115,16 @@ export default function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex flex-wrap justify-between items-center py-4 gap-4">
-        <p className="text-sm text-muted-foreground">
-          showing {table.getCoreRowModel().rows?.length - ((table.getState().pagination.pageIndex + 1) * 10) >= 1 ? 10 : (table.getCoreRowModel().rows?.length + 10) - ((table.getState().pagination.pageIndex + 1) * 10)} of {table.getCoreRowModel().rows?.length} results
-        </p>
-        <p className="text-sm text-muted-foreground">Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</p>
+      <div className={`flex flex-wrap items-center py-4 gap-4 ${showPagination ? 'justify-between' : 'justify-end'}`}>
+        {
+          showPagination &&
+          <>
+            <p className="text-sm text-muted-foreground">
+            showing {table.getCoreRowModel().rows?.length - ((table.getState().pagination.pageIndex + 1) * 10) >= 1 ? 10 : (table.getCoreRowModel().rows?.length + 10) - ((table.getState().pagination.pageIndex + 1) * 10)} of {table.getCoreRowModel().rows?.length} results
+            </p>
+            <p className="text-sm text-muted-foreground">Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</p>
+          </>
+        }
         <div className="flex items-center justify-end space-x-2 gap-2">
           <Button
             variant="outline"
