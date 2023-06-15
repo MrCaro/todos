@@ -113,7 +113,7 @@ export default function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex flex-wrap justify-between items-center py-4">
+      <div className="flex flex-wrap justify-between items-center py-4 gap-4">
         <p className="text-sm text-muted-foreground">
           showing {table.getCoreRowModel().rows?.length - (index * 10) >= 1 ? 10 : table.getCoreRowModel().rows?.length + 10 - (index * 10)} of {table.getCoreRowModel().rows?.length} results
         </p>
