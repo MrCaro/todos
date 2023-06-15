@@ -88,10 +88,10 @@
   .data-table::after {
     content: "";
     position: absolute;
-    background: linear-gradient(90deg,transparent 20%,#fff);
+    background: linear-gradient(90deg,transparent 10%,#fff);
     height: 100%;
-    width: 30%;
+    width: 40%;
     top: 0;
-    left: 70%;
+    left: 60%;
   }
 }
