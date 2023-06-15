@@ -60,7 +60,7 @@ export const columns: ColumnDef<Todos>[] = [
         aria-label="Select row"
       />
     ),
-    enableSorting: false,
+    // enableSorting: false,
     enableHiding: false,
   },  
   {
