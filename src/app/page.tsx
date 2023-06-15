@@ -55,7 +55,7 @@ export default async function Home() {
                 </Label>
                 <Input id="title" name="title" type="text" placeholder="i.e Do my laundry" />
                 <div className="flex">
-                  <Button className="w-full" type="submit">Save item</Button>
+                  <Button className="w-full" type="submit">Save</Button>
                 </div>
               </form>
               <DialogFooter className="text-sm">
