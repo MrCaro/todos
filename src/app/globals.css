@@ -80,18 +80,3 @@
   }
 }
 
-.data-table {
-  position: relative;
-}
-
-@media (max-width: 768px) {
-  .data-table::after {
-    content: "";
-    position: absolute;
-    background: linear-gradient(90deg,transparent 10%,#fff);
-    height: 100%;
-    width: 40%;
-    top: 0;
-    left: 60%;
-  }
-}
